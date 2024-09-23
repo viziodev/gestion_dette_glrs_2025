@@ -2,15 +2,15 @@ package com.ism.services.impl;
 
 import java.util.List;
 
-import com.ism.core.config.Repository;
 import com.ism.entities.Client;
-import com.ism.entities.User;
+
 import com.ism.repository.ClientRepository;
 import com.ism.repository.UserRepository;
 import com.ism.services.ClientService;
+import java.util.Collections;
 
-public class ClientServiceImpl  implements ClientService{
-    //Couplage Faible entre le Servic et le Repository
+public class ClientServiceImpl implements ClientService {
+    // Couplage Faible entre le Servic et le Repository
     private ClientRepository clientRepository;
     private UserRepository userRepository;
 
@@ -20,24 +20,44 @@ public class ClientServiceImpl  implements ClientService{
     }
 
     @Override
-    public void createClient(Client client) {
-        
-        clientRepository.insert(client);
+    public Client createClient(Client client) {
+
+        try {
+            clientRepository.insert(client, "user");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return client;
     }
 
     @Override
     public List<Client> findAllClient() {
-        return clientRepository.selectAll();
+        try {
+            return clientRepository.selectAll("user");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public Client searchClient(String telephone) {
-        return clientRepository.selectByTelephone(telephone);
+        try {
+            return clientRepository.selectByTelephone(telephone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public Client searchClientBySurname(String surname) {
-        return clientRepository.selectBySurname(surname);
+        try {
+            return clientRepository.selectBySurname(surname);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

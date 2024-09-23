@@ -2,7 +2,7 @@ package com.ism.repository.list;
 
 
 
-import com.ism.core.config.RepositoryListImpl;
+import com.ism.core.repository.impl.RepositoryListImpl;
 import com.ism.entities.User;
 import com.ism.repository.UserRepository;
 

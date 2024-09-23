@@ -1,6 +1,6 @@
 package com.ism.repository;
 
-import com.ism.core.config.Repository;
+import com.ism.core.repository.Repository;
 import com.ism.entities.User;
 
 

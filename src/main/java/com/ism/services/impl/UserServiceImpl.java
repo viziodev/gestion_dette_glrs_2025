@@ -1,8 +1,9 @@
 package com.ism.services.impl;
 
 import java.util.List;
+import java.util.Collections;
 
-import com.ism.core.config.Repository;
+import com.ism.core.repository.Repository;
 import com.ism.entities.User;
 import com.ism.services.UserService;
 
@@ -20,13 +21,23 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void createUser(User user) {
-    userRepository.insert(user);
+  public User createUser(User user) {
+    try {
+      userRepository.insert(user);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return user;
   }
 
   @Override
   public List<User> findAllUser() {
-    return userRepository.selectAll();
+    try {
+      return userRepository.selectAll();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return  Collections.emptyList();
   }
 
 }
