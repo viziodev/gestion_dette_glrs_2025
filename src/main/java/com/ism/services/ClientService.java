@@ -2,7 +2,7 @@ package com.ism.services;
 
 import java.util.List;
 
-import com.ism.entities.Client;
+import com.ism.data.entities.Client;
 
 public interface ClientService {
     void createClient(Client client);

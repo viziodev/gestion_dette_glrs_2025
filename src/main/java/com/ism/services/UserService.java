@@ -2,7 +2,7 @@ package com.ism.services;
 
 import java.util.List;
 
-import com.ism.entities.User;
+import com.ism.data.entities.User;
 
 public interface UserService {
 

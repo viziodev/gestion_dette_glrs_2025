@@ -4,21 +4,26 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.ism.core.factory.Factory;
-import com.ism.entities.Client;
+import com.ism.data.entities.Client;
+import com.ism.data.entities.User;
+import com.ism.data.enums.RoleEnum;
 import com.ism.services.ClientService;
+import com.ism.services.UserService;
 import com.ism.services.impl.ClientServiceImpl;
+import com.ism.services.impl.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
         int choix;
         Scanner scanner = new Scanner(System.in);
 
-
         // Couplage Fort
 
         ClientService clientServiceImpl = new ClientServiceImpl(
-                Factory.getInstanceClientRepository(),
-                Factory.getInstanceUserRepository());
+                Factory.getInstanceClientRepository());
+
+        UserService userServiceImpl = new UserServiceImpl(Factory.getInstanceUserRepository());
+
         Client client;
         do {
             System.out.println("1-Creer Client");
@@ -43,7 +48,25 @@ public class Main {
                         client.setTelephone(scanner.nextLine());
                         System.out.println("Entrer l'adresse");
                         client.setAdresse(scanner.nextLine());
+                        System.out.println("Voulez vous associez un compte a ce client O/N");
+                        char res = scanner.next().charAt(0);
+                        scanner.nextLine();
+                        if (res == 'O') {
+                            User user = new User();
+                            System.out.println("Entrer Nom ");
+                            user.setNom(scanner.nextLine());
+                            System.out.println("Entrer le Prenom");
+                            user.setPrenom(scanner.nextLine());
+                            System.out.println("Entrer le Login");
+                            user.setLogin(scanner.nextLine());
+                            System.out.println("Entrer le Password");
+                            user.setPassword(scanner.nextLine());
+                            user.setRole(RoleEnum.CLIENT);
+                            client.setUser(user);
+                        }
+
                         clientServiceImpl.createClient(client);
+
                     }
                     // Hydrater
 
@@ -62,6 +85,13 @@ public class Main {
                         System.out.println(client);
                     }
 
+                    break;
+                case 4:
+                    break;
+
+                case 5:
+                    List<User> listUsers = userServiceImpl.findAllUser();
+                    listUsers.forEach(System.out::println);
                     break;
 
                 default:
