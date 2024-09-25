@@ -3,7 +3,11 @@ package com.ism.view;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import com.ism.core.factory.Factory;
+import com.ism.data.dto.impl.ClientDto;
 import com.ism.data.entities.Client;
 import com.ism.data.entities.User;
 import com.ism.data.enums.RoleEnum;
@@ -13,6 +17,7 @@ import com.ism.services.impl.ClientServiceImpl;
 import com.ism.services.impl.UserServiceImpl;
 
 public class Main {
+
     public static void main(String[] args) {
         int choix;
         Scanner scanner = new Scanner(System.in);
@@ -72,7 +77,7 @@ public class Main {
 
                     break;
                 case 2:
-                    List<Client> list = clientServiceImpl.findAllClient();
+                    List<ClientDto> list = new ClientDto().toListDto( clientServiceImpl.findAllClient());
                     list.forEach(System.out::println);
                     break;
                 case 3:
