@@ -1,12 +1,12 @@
 package com.ism.repository.bd;
 
-import com.ism.core.repository.impl.CrudRepository;
+import com.ism.core.repository.impl.RepositoryBD;
 import com.ism.entities.Client;
 import com.ism.repository.ClientRepository;
 import java.sql.*;
 import java.util.List;
 
-public class ClientRepositoryBD extends CrudRepository<Client, Integer> implements ClientRepository {
+public class ClientRepositoryBD extends RepositoryBD<Client, Integer> implements ClientRepository {
     public ClientRepositoryBD() {
         super(Client.class);
 
