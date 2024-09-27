@@ -22,13 +22,23 @@ public class RepositoryJpaImpl<T> implements Repository<T> {
 
     @Override
     public void insert(T data) {
-        em.persist(data);
+        try {
+            em.getTransaction().begin();
+            em.persist(data);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+
     }
 
     @Override
     public List<T> selectAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
+     
+       // return this.em.createQuery("SELECT u FROM  Client u", type,)
+                //.getResultList();
+                return null;
+
     }
 
 }
