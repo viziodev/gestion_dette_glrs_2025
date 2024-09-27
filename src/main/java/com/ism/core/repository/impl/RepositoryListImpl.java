@@ -9,8 +9,6 @@ import com.ism.core.repository.Repository;
 
 public class RepositoryListImpl<T>  implements Repository<T> {
      protected List<T> list = new ArrayList<>();
-
- 
      @Override
     public void insert(T data) {
         list.add(data);

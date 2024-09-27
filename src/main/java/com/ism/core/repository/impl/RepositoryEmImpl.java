@@ -19,8 +19,8 @@ public class RepositoryEmImpl<T> extends DatabaseImpl implements Repository<T> {
         if (em == null) {
             em = emf.createEntityManager();
         }
-
     }
+
     public RepositoryEmImpl(Class<T> type) {
         getEntityManager();
         this.type = type;
@@ -36,9 +36,9 @@ public class RepositoryEmImpl<T> extends DatabaseImpl implements Repository<T> {
 
     @Override
     public List<T> selectAll() {
-        return this.em.createQuery("SELECT u FROM  Client u", type)
+        String query = String.format("SELECT u FROM  %s u", type.getName());
+        return this.em.createQuery(query, type)
                 .getResultList();
-
     }
 
 }

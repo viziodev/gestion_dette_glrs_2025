@@ -30,12 +30,14 @@ public class ClientDto implements DtoInterface<Client, ClientDto> {
 
     @Override
     public ClientDto toDto(Client data) {
-        // System.out.println(data.getUser() != null);
+        // System.out.println(data);
+        UserDto userDto = data != null && data.getUser() == null ? null : new UserDto(data.getUser());
+        System.out.println(userDto);
         return ClientDto.builder()
                 .id(data.getId())
                 .adresse(data.getAdresse())
                 .telephone(data.getTelephone())
-                .user(data.getUser() == null ? null : new UserDto(data.getUser()))
+                .user(userDto)
                 .build();
     }
 

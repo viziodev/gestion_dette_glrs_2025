@@ -3,8 +3,7 @@ package com.ism.view;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 
 import com.ism.core.factory.Factory;
 import com.ism.data.dto.impl.ClientDto;
@@ -77,7 +76,7 @@ public class Main {
 
                     break;
                 case 2:
-                    List<ClientDto> list = new ClientDto().toListDto( clientServiceImpl.findAllClient());
+                    List<Client> list =  clientServiceImpl.findAllClient();
                     list.forEach(System.out::println);
                     break;
                 case 3:

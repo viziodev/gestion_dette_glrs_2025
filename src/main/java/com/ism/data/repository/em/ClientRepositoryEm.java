@@ -24,9 +24,14 @@ public class ClientRepositoryEm extends RepositoryEmImpl<Client> implements Clie
     @Override
     public Client selectBySurname(String surname) {
         try {
-            return em.createQuery("SELECT u FROM Client u WHERE u.surname = :name", Client.class)
-                    .setParameter("name", surname)
+            return em.createNamedQuery("findBySurname", Client.class)
+                    .setParameter("surname", surname)
                     .getSingleResult();
+
+            // return em.createQuery("SELECT u FROM Client u WHERE u.surname = :name",
+            // Client.class)
+            // .setParameter("name", surname)
+            // .getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
