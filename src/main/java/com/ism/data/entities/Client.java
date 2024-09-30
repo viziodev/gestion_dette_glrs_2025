@@ -4,12 +4,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,20 +16,19 @@ import lombok.ToString;
 
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Getter // Annotation
 @Setter
-@ToString(of = { "id", "surname", "telephone", "adresse" })
-@EqualsAndHashCode()
+@ToString(exclude = { "user", "dettes" })
+@EqualsAndHashCode(callSuper = false, of = { "surname" })
 @Entity
 @Table(name = "clients")
 @NamedQueries({
-        @NamedQuery(name = "findBySurname", query = "select p from Client p where p.surname like :surname")
+        @NamedQuery(name = "findBySurname", query = "select p from Client p where p.surname like :surname"),
+        @NamedQuery(name = "findByTelephone", query = "select p from Client p where p.telephone like :telephone")
 })
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Client extends AbstractEntity {
     @Column(unique = true)
     private String surname;
     @Column(unique = true)
@@ -42,5 +39,8 @@ public class Client {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(nullable = true)
     private User user;
+
+    @OneToMany(mappedBy = "client")
+    List<Dette> dettes;
 
 }

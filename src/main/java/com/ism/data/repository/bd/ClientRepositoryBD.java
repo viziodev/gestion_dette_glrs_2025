@@ -16,7 +16,7 @@ import java.sql.*;
 //I Interface Segration
 //D Depency Injection
 
-public class ClientRepositoryBD extends RepositoryBDImpl<Client> implements ClientRepository {
+public  class ClientRepositoryBD extends RepositoryBDImpl<Client> implements ClientRepository {
     UserRepository userRepository;
 
     public ClientRepositoryBD(UserRepository userRepository) {
@@ -145,4 +145,6 @@ public class ClientRepositoryBD extends RepositoryBDImpl<Client> implements Clie
         return client;
 
     }
+
+   
 }

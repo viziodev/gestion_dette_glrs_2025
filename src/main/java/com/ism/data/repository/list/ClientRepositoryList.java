@@ -25,4 +25,6 @@ public class ClientRepositoryList extends RepositoryListImpl<Client>  implements
                 .orElse(null);
 
     }
+
+    
 }

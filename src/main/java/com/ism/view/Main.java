@@ -3,10 +3,7 @@ package com.ism.view;
 import java.util.List;
 import java.util.Scanner;
 
-
-
-import com.ism.core.factory.Factory;
-import com.ism.data.dto.impl.ClientDto;
+import com.ism.core.factory.repository.RepositoryFactoryImpl;
 import com.ism.data.entities.Client;
 import com.ism.data.entities.User;
 import com.ism.data.enums.RoleEnum;
@@ -24,9 +21,10 @@ public class Main {
         // Couplage Fort
 
         ClientService clientServiceImpl = new ClientServiceImpl(
-                Factory.getInstanceClientRepository());
+                RepositoryFactoryImpl.getInstance().getInstanceClientRepository());
 
-        UserService userServiceImpl = new UserServiceImpl(Factory.getInstanceUserRepository());
+        UserService userServiceImpl = new UserServiceImpl(
+                RepositoryFactoryImpl.getInstance().getInstanceUserRepository());
 
         Client client;
         do {
@@ -76,7 +74,7 @@ public class Main {
 
                     break;
                 case 2:
-                    List<Client> list =  clientServiceImpl.findAllClient();
+                    List<Client> list = clientServiceImpl.findAllClient();
                     list.forEach(System.out::println);
                     break;
                 case 3:

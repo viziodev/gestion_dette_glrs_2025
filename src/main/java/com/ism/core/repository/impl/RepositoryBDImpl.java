@@ -8,4 +8,14 @@ public abstract class RepositoryBDImpl<T> extends DatabaseImpl implements Reposi
     // Creer les methodes insert et selectAll par reflexion
     protected String tableName;
     public abstract T convertToObject(ResultSet rs) throws SQLException;
+    @Override
+    public void remove(Integer id) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public T selectById(Integer id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

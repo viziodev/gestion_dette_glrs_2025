@@ -16,12 +16,21 @@ import org.hibernate.annotations.ColumnDefault;
 
 import com.ism.data.enums.RoleEnum;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+
+
+
+@Getter // Annotation
+@Setter
+@ToString(exclude = { "client" })
+@EqualsAndHashCode(callSuper = false, of = { "login" })
 @Entity
 @Table(name = "users")
-public class User {
+public class User  extends AbstractEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

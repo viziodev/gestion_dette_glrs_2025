@@ -7,6 +7,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.ism.data.entities.Client</class>
         <class>com.ism.data.entities.User</class>
+        <class>com.ism.data.entities.Dette</class>
+        <class>com.ism.data.entities.Article</class>
+        <class>com.ism.data.entities.Detail</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />

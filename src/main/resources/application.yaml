@@ -1,0 +1,4 @@
+persistence: "DETTES"
+repository:
+  client: ClientRepositoryEm
+  user: UserRepositoryEm

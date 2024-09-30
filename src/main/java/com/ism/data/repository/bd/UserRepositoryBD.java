@@ -17,15 +17,16 @@ import java.sql.*;
 
 public class UserRepositoryBD extends RepositoryBDImpl<User> implements UserRepository {
 
-    public UserRepositoryBD(){
+    public UserRepositoryBD() {
         this.tableName = "user";
     }
+
     @Override
     public User selectByLogin(String login) {
         User result = null;
         // 1-OuvreConnexion
         try {
-            String sql = String.format("select * from %s where login like ?",this.tableName);
+            String sql = String.format("select * from %s where login like ?", this.tableName);
             this.getConnection();
             this.initPreparedStatement(sql);
 
@@ -151,4 +152,5 @@ public class UserRepositoryBD extends RepositoryBDImpl<User> implements UserRepo
         }
         return result;
     }
+
 }
