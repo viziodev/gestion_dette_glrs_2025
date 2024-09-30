@@ -11,17 +11,20 @@ import com.ism.core.repository.Repository;
 public class RepositoryJpaImpl<T> implements Repository<T> {
 
     protected EntityManager em;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("MYSQLDETTES");
+    protected Class<T> type;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("MYSQLDETTES");
 
-    public RepositoryJpaImpl() {
+    public RepositoryJpaImpl(Class<T> type) {
         if (em == null) {
             em = emf.createEntityManager();
         }
+        this.type = type;
 
     }
 
     @Override
     public void insert(T data) {
+
         try {
             em.getTransaction().begin();
             em.persist(data);
@@ -34,11 +37,13 @@ public class RepositoryJpaImpl<T> implements Repository<T> {
 
     @Override
     public List<T> selectAll() {
-     
-       // return this.em.createQuery("SELECT u FROM  Client u", type,)
-                //.getResultList();
-                return null;
+        String sql = String.format("SELECT u FROM  %s u", type.getName());
+        return this.em.createQuery(sql, type)
+                .getResultList();
 
     }
+
+    // remove
+    // selectBy
 
 }

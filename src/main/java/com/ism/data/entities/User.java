@@ -35,7 +35,7 @@ public class User {
     private boolean etat;
 
     // Navigabilite
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     @JoinColumn(name = "clients_id", nullable = true)
     private Client client;
 
